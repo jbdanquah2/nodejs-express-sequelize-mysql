@@ -12,6 +12,7 @@ exports.create = (req, res) => {
         return;
     }
 
+
     // Create a Image
     const image = {
         url: req.body.url,
