@@ -9,8 +9,17 @@ module.exports = app => {
     // Retrieve all Images
     router.get("/", images.findAll);
   
-    // Retrieve all published Images
-    router.get("/published", images.findAllPublished);
+    // Retrieve all Homepage Images
+    router.get("/homepage", images.findAllHomepage);
+
+    // Retrieve all Kitchen Images
+    router.get("/kitchen", images.findAllKitchen);
+
+    // Retrieve all Livingroom Images
+    router.get("/livingroom", images.findAllLivingroom);
+
+    // Retrieve all bath Images
+    router.get("/bath", images.findAllBath);
   
     // Retrieve a single Image with id
     router.get("/:id", images.findOne);

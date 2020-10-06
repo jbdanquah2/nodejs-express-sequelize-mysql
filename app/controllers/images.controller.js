@@ -44,7 +44,7 @@ exports.findAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving tutorials."
+                    err.message || "Some error occurred while retrieving images."
             });
         });
 };
@@ -59,7 +59,7 @@ exports.findOne = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Tutorial with id=" + id
+                message: "Error retrieving image with id=" + id
             });
         });
 };
@@ -74,11 +74,11 @@ exports.update = (req, res) => {
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Tutorial was updated successfully."
+                    message: "Image was updated successfully."
                 });
             } else {
                 res.send({
-                    message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+                    message: `Cannot update image with id=${id}. Maybe Tutorial was not found or req.body is empty!`
                 });
             }
         })
@@ -99,29 +99,29 @@ exports.delete = (req, res) => {
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Tutorial was deleted successfully!"
+                    message: "Image was deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+                    message: `Cannot delete Image with id=${id}. Maybe Image was not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Tutorial with id=" + id
+                message: "Could not delete Image with id=" + id
             });
         });
 };
 
-// Delete all Image from the database.
+// Delete all Images from the database.
 exports.deleteAll = (req, res) => {
     Image.destroy({
         where: {},
         truncate: false
     })
         .then(nums => {
-            res.send({ message: `${nums} Tutorials were deleted successfully!` });
+            res.send({ message: `${nums} Image were deleted successfully!` });
         })
         .catch(err => {
             res.status(500).send({
@@ -132,8 +132,50 @@ exports.deleteAll = (req, res) => {
 };
 
 // Find all published Image
-exports.findAllPublished = (req, res) => {
-    Image.findAll({ where: { published: true } })
+exports.findAllHomepage = (req, res) => {
+    Image.findAll({ where: { image_categories_id: 1 } })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving tutorials."
+            });
+        });
+};
+
+// Find all Kitchen Image
+exports.findAllKitchen= (req, res) => {
+    Image.findAll({ where: { image_categories_id: 2 } })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving tutorials."
+            });
+        });
+};
+
+// Find all Livingroom Image
+exports.findAllLivingroom= (req, res) => {
+    Image.findAll({ where: { image_categories_id: 3 } })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving tutorials."
+            });
+        });
+};
+
+// Find all Bath Image
+exports.findAllBath= (req, res) => {
+    Image.findAll({ where: { image_categories_id: 4 } })
         .then(data => {
             res.send(data);
         })
