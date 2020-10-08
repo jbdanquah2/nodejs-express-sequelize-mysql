@@ -1,5 +1,5 @@
 module.exports = app => {
-    const feedbacks = require("../controllers/feedback.controller.js");
+    const feedbacks = require("../controllers/feedbacks.controller.js");
   
     var router = require("express").Router();
   
